@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Отзывы";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Отзыв</h1>
+
+    <form method="post">
+        <table>
+            <tr>
+                <td>
+                    Имя:
+                </td>
+                <td>
+                    <input name="txtName" type="text" placeholder="Введите имя" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Отзыв:
+                </td>
+                <td>
+                    <textarea name="txtFeed" placeholder="Введите отзыв">
+
+                    </textarea>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="submit" value="Отправить"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    @{
+        if (ViewData.Keys.Contains("feed"))
+        {
+            <dl>
+                <dt>@ViewData["name"]:</dt>
+                <dd>@ViewData["feed"]</dd>
+            </dl>
+        }
+     }
+
+
+    
+
+</div>

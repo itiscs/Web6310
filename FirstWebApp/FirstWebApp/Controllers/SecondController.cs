@@ -11,5 +11,20 @@ namespace FirstWebApp.Controllers
                 ViewData["Name"] = id;
             return View();
         }
+        public IActionResult Feedback()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Feedback(string txtName, string txtFeed)
+        {
+            if (txtName != null)
+                ViewData["name"] = txtName;
+            if (txtFeed != null)
+                ViewData["feed"] = txtFeed;
+
+            return View();
+        }
     }
 }
