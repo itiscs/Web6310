@@ -28,6 +28,12 @@ namespace FirstMVCApp.Models
         [Range(0,10000)]
         public decimal? Price { get; set; }
 
+        [Display(Name = "Категория")]
+        public int CategoryId { get; set; }
+
+        [Display(Name = "Категория")]
+        public Category? Category { get; set; }
+
         //[NotMapped]
         //public int CompProp { get; set; }
     }
