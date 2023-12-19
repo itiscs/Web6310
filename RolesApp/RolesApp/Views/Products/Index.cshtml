@@ -35,6 +35,7 @@
             </td>
             <td>
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    <a asp-action="AddToCart" asp-route-id="@item.Id">To Cart</a>
                     @if (User.IsInRole("Admin"))
                     {
                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> 

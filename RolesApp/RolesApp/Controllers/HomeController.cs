@@ -15,11 +15,30 @@ namespace RolesApp.Controllers
 
         public IActionResult Index()
         {
+            if(HttpContext.Session.Keys.Contains("Product"))
+            {
+                var id = HttpContext.Session.GetInt32("Product");
+                ViewData["Product"] = $"Выбран товар - Product {id}";
+            }    
+
             return View();
         }
 
         public IActionResult Privacy()
         {
+            if(HttpContext.Request.Cookies.ContainsKey("Color"))
+                ViewData["Color"] = HttpContext.Request.Cookies["Color"].ToString();
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Privacy(string sel, int product)
+        {
+            HttpContext.Response.Cookies.Append("Color", sel);
+            
+            HttpContext.Session.SetInt32("Product", product);
+
             return View();
         }
 

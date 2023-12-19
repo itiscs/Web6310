@@ -45,6 +45,24 @@ namespace RolesApp.Controllers
             return View(product);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> AddToCart(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product = await _context.Products
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
+        }
+
         // GET: Products/Create
         [Authorize(Roles = "Admin")]
         public IActionResult Create()
