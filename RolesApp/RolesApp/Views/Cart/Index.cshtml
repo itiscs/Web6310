@@ -1,0 +1,36 @@
+﻿@model RolesApp.Models.Cart
+
+@{
+    ViewData["Title"] = "Корзина";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Товар
+            </th>
+            <th>
+                Количество
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Lines) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Count)
+            </td>
+            <td>
+                    <a asp-action="Delete"  asp-route-id="@item.Product.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

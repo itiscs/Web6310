@@ -29,14 +29,18 @@ namespace RolesApp.Controllers
             if(HttpContext.Request.Cookies.ContainsKey("Color"))
                 ViewData["Color"] = HttpContext.Request.Cookies["Color"].ToString();
 
+            if (HttpContext.Request.Cookies.ContainsKey("Date"))
+                ViewData["Date"] = HttpContext.Request.Cookies["Date"].ToString();
+
             return View();
         }
 
         [HttpPost]
-        public IActionResult Privacy(string sel, int product)
+        public IActionResult Privacy(string sel, int product, DateTime date1)
         {
             HttpContext.Response.Cookies.Append("Color", sel);
-            
+            HttpContext.Response.Cookies.Append("Date", date1.ToString("s"));
+
             HttpContext.Session.SetInt32("Product", product);
 
             return View();
