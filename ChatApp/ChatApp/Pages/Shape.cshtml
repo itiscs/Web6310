@@ -1,0 +1,39 @@
+﻿@page
+@model ShapeModel
+@{
+    ViewData["Title"] = "Move shape";
+}
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+        integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+        crossorigin="anonymous"></script>
+
+ <style>
+        #shape {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            cursor: move;
+        }
+ </style>
+
+
+<div id="shape"></div>
+<script>
+    $shape = $("#shape");
+    var connection = new signalR.HubConnectionBuilder()
+        .withUrl('/shapeHub')
+        .build();
+
+    connection.on('shapeMoved', function (x, y) {
+        $shape.css({ left: x, top: y });
+    });
+
+    connection.start().then(
+        $shape.draggable({
+            drag: function () {
+                connection.invoke("MoveShape", this.offsetLeft, this.offsetTop || 0);
+            }
+        })
+    );
+</script>

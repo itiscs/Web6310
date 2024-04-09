@@ -10,11 +10,5 @@ namespace ChatApp.Hubs
 
         }
 
-
-
-
-
-
-
     }
 }

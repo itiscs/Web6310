@@ -27,6 +27,7 @@ namespace ChatApp
 
             app.MapRazorPages();
             app.MapHub<ChatHub>("/chat");
+            app.MapHub<ShapeHub>("/shapeHub");
 
             app.Run();
         }
